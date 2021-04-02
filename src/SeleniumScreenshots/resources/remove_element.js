@@ -1,5 +1,15 @@
 (function (selector, callback) {
-    var $el = jQuery(selector);
+    var $el = null;
+	
+	if(selector.startsWith("//")){
+		selector = `xpath:${selector}`
+	}
+	if(selector.startWith("xpath://")
+		var headings = document.evaluate(selector.substring(6), document, null, XPathResult.ANY_TYPE, null);
+		$el = headings.iterateNext();		
+	}else{ 
+	   $el = jQuery(selector);
+	}
     if ($el.length > 0) {
         $el.remove();
         callback(true);

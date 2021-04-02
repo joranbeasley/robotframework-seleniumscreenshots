@@ -5,7 +5,17 @@
     var id = 'robot-' + Math.random().toString().substring(2);
     var $annotation = jQuery('<div></div>');
     var $pointer = jQuery('<div></div>');
-    var $target = jQuery(selector);
+    var $target = null;
+	
+	if(selector.startsWith("//")){
+		selector = `xpath:${selector}`
+	}
+	if(selector.startWith("xpath://")
+		var headings = document.evaluate(selector.substring(6), document, null, XPathResult.ANY_TYPE, null);
+		$target = headings.iterateNext();		
+	}else{ 
+	   $target = jQuery(selector);
+	}
     if ($target.length === 0) {
         return callback(false);
     }

@@ -1,7 +1,17 @@
 (function (selectors, crop_margin, callback) {
     var center = null, $el, max, i;
     for (i = 0; i < selectors.length; i++) {
-        $el = jQuery(selectors[i]);
+        var $el = null;
+	
+		if(selector.startsWith("//")){
+			selector = `xpath:${selector}`
+		}
+		if(selector.startWith("xpath://")
+			var headings = document.evaluate(selector.substring(6), document, null, XPathResult.ANY_TYPE, null);
+			$el = headings.iterateNext();		
+		}else{ 
+		   $el = jQuery(selector);
+		}
         if ($el.length > 0 && center === null) {
             center = $el.offset().left + $el.outerWidth() / 2;
         } else if ($el.length > 0) {

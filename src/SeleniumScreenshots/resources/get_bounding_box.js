@@ -1,8 +1,16 @@
 (function (selectors, crop_margin, callback) {
     var i, $target, offset, left = null, top = null, width = null,
         height = null;
-    for (i = 0; i < selectors.length; i++) {
-        $target = jQuery(selectors[i]);
+    for (i = 0; i < selectors.length; i++) {    
+		if(selector.startsWith("//")){
+			selector = `xpath:${selector}`
+		}
+		if(selector.startWith("xpath://")
+			var headings = document.evaluate(selector.substring(6), document, null, XPathResult.ANY_TYPE, null);
+			$target = headings.iterateNext();		
+		}else{ 
+		   $target = jQuery(selector);
+		}
         if ($target.length === 0) {
             return callback([selectors[i]]);
         }
