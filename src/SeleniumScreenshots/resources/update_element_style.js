@@ -4,7 +4,7 @@
 	if(selector.startsWith("//")){
 		selector = `xpath:${selector}`
 	}
-	if(selector.startWith("xpath://")){
+	if(selector.startsWith("xpath://")){
 		var headings = document.evaluate(selector.substring(6), document, null, XPathResult.ANY_TYPE, null);
 		$el = headings.iterateNext();		
 	}else{ 
